@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-infinite-scroll: infinite-scroll 40s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px) rotateX(0deg);
+    }
+
+    50% {
+      transform: translateY(-20px) rotateX(5deg);
+    }
+  }
+}
+
+body {
+  background: radial-gradient(circle at center, #0a0f0d 0%, #050505 100%);
+  color: #10b981;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  overflow-x: hidden;
+}
+
+/* 3D Glass Effect */
+.glass-3d {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transform: perspective(1000px) rotateX(2deg);
+  transition: all 0.5s ease;
+}
+
+.glass-3d:hover {
+  transform: perspective(1000px) rotateX(0deg) scale(1.01);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+/* CRT Scanline Effect */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
